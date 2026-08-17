@@ -1,6 +1,21 @@
-# Gate configuration. Written BEFORE the final pass: declaring the claims and
-# their independent datasets after seeing results would defeat the purpose.
+# T2 gate config — written BEFORE the final pass (the B5/MAU lesson).
 # Dataset tokens must match the runner's names exactly (gifteval names use '+').
+#
+# REWRITTEN 17 Aug 2026, after peer-review Mode A. The four claim ids below are
+# the claims the manuscript makes. The previous four were the claims of the
+# ORIGINAL hypothesis, which this study's own data refuted:
+#   tsfms_rarely_beat_snaive_outside_pretraining_distribution
+#       — refuted: TimesFM-2.5 beats seasonal-naive on 27 of 27 datasets.
+#   contamination_inflates_reported_tsfm_gains
+#       — too strong as stated: it holds for Chronos-Bolt and not for TimesFM-2.5.
+#   compute_cost_per_accuracy_favours_classical
+#       — direction corrected: the checkpoint still ahead is the most expensive
+#         method in the study, while the cheap checkpoints are the ones whose
+#         advantage does not survive the corpus split.
+# BUILD.md required this rewrite before FINAL and it was missed. The gate itself
+# still passed, because B1 asserts that each declared claim has runs on its
+# independent datasets, not that the claim is true; but a released gate config
+# that declares refuted claims contradicts the paper it ships with.
 
 stats_artifacts:
   - stats/omnibus.json
@@ -10,23 +25,54 @@ stats_artifacts:
   - stats/coverage.json
   - stats/head_to_head_classical.json
 
-# Every comparative claim the paper will make, with the datasets that count as
-# independent for it. The two-suite design IS the external validation: any claim
-# established on Monash must hold on GIFT-Eval configs the TSFMs did not select.
+# Every comparative claim the paper makes, with the datasets that count as
+# independent for it. The two-suite design IS the external validation: a claim
+# established on Monash must hold on GIFT-Eval configurations that no checkpoint
+# developer chose as our test set, and the contamination claim's independent side
+# is the clean Monash subset.
 comparative_claims:
-  - id: "tsfms_rarely_beat_snaive_outside_pretraining_distribution"
+  # C1, Results IV-C: the spread within the foundation-model class exceeds its
+  # gap to the classical methods (rank-based, all 27 datasets).
+  - id: "within_class_spread_exceeds_class_to_classical_gap"
     independent_datasets: ["bizitobs_l2c+H+short", "jena_weather+H+short",
-                           "LOOP_SEATTLE+H+short", "restaurant+D+short"]
-  - id: "classical_baselines_competitive_with_tsfm_zero_shot"
-    independent_datasets: ["hierarchical_sales+D+short", "solar+H+short",
-                           "ett1+H+short"]
-  - id: "contamination_inflates_reported_tsfm_gains"
-    independent_datasets: ["nn5_daily", "hospital", "fred_md", "covid_deaths"]
-    # clean-subset Monash datasets serve as the independent side of the
-    # contaminated-vs-clean contrast; final list synced with the VERIFIED matrix
-  - id: "compute_cost_per_accuracy_favours_classical"
-    independent_datasets: ["m4_hourly", "electricity_weekly", "traffic_weekly"]
+                           "LOOP_SEATTLE+H+short", "M_DENSE+H+short"]
 
-# (dataset, model) cells that genuinely cannot be produced, each with a written
-# justification. Empty here by design: every cell in this study was computable.
+  # C2, Results IV-D: only TimesFM-2.5 beats the per-dataset best classical
+  # method with significance, and the verdict survives Holm correction.
+  - id: "one_checkpoint_beats_best_classical_with_significance"
+    independent_datasets: ["hierarchical_sales+D+short", "solar+H+short",
+                           "ett1+H+short", "ett2+H+short"]
+
+  # C3, Results IV-E: Chronos-Bolt's advantage is confined to its own corpus and
+  # TimesFM-2.5's is not. The independent side is the clean Monash subset, where
+  # a corpus-driven advantage would have to disappear. All seven lie outside
+  # TimesFM-2.5's corpus; three of them also lie outside Chronos-Bolt's, which is
+  # the whole of its clean side minus the two cells its disclosure leaves
+  # undecided.
+  - id: "one_advantage_confined_to_corpus_the_other_not"
+    independent_datasets: ["hospital", "covid_deaths", "car_parts", "us_births",
+                           "m4_hourly", "m4_weekly", "electricity_weekly"]
+
+  # C4, Results IV-G: the checkpoint still ahead after both the harder baseline
+  # and the corpus split is also the most expensive at the median.
+  - id: "the_surviving_advantage_is_the_most_expensive"
+    independent_datasets: ["m4_hourly", "electricity_weekly", "traffic_weekly",
+                           "SZ_TAXI+H+short", "restaurant+D+short"]
+
+  # The meta-finding of Results IV-F rests on the leaderboard flags and the
+  # corpus matrix rather than on a per-dataset comparison, so it declares no
+  # independent datasets and is waived here with its reason.
+  - id: "leakage_flag_certifies_a_benchmark_not_a_model"
+    waive: true
+    waiver_justification: >-
+      Not a comparative claim over datasets. It is established by placing the
+      published GIFT-Eval leakage flags beside the verified corpus matrix:
+      TimesFM-2.5 is flagged clean on the GIFT-Eval test split, correctly within
+      that scope, and 8 of the 15 Monash datasets lie inside the corpus named on
+      its model card. Evidence lives in external/gifteval_leakage_flags.json and
+      configs/contamination_verified.yaml, both released.
+
+# Cells that genuinely cannot be produced, with a justification. Empty by
+# design: the full run's six AutoARIMA timeouts were a fixable compute problem
+# (Hyndman's approximation heuristic), not an impossibility.
 allowed_missing_cells: {}
