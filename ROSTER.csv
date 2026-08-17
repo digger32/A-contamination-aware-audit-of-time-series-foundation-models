@@ -1,0 +1,28 @@
+suite,dataset,freq,horizon,seasonality,seasonality_origin,series_cap,series_prepared,series_scored,source,licence
+monash,m3_monthly,M,18,12,declared (Monash archive convention),500,500,500,zenodo:4656298,CC-BY-4.0
+monash,m3_quarterly,Q,8,4,declared (Monash archive convention),500,500,500,zenodo:4656262,CC-BY-4.0
+monash,m4_hourly,H,48,24,declared (Monash archive convention),414,414,414,zenodo:4656589,CC-BY-4.0
+monash,m4_weekly,W,13,1,declared (Monash archive convention),359,359,359,zenodo:4656522,CC-BY-4.0
+monash,tourism_monthly,M,24,12,declared (Monash archive convention),366,366,366,zenodo:4656096,CC-BY-4.0
+monash,tourism_quarterly,Q,8,4,declared (Monash archive convention),427,427,427,zenodo:4656093,CC-BY-4.0
+monash,nn5_daily,D,56,7,declared (Monash archive convention),111,111,111,zenodo:4656117,CC-BY-4.0
+monash,nn5_weekly,W,8,1,declared (Monash archive convention),111,111,111,zenodo:4656125,CC-BY-4.0
+monash,hospital,M,12,12,declared (Monash archive convention),500,500,500,zenodo:4656014,CC-BY-4.0
+monash,fred_md,M,12,12,declared (Monash archive convention),107,107,107,zenodo:4654833,CC-BY-4.0
+monash,car_parts,M,12,12,declared (Monash archive convention),500,500,497,zenodo:4656021,CC-BY-4.0
+monash,covid_deaths,D,30,7,declared (Monash archive convention),266,266,230,zenodo:4656009,CC-BY-4.0
+monash,electricity_weekly,W,8,1,declared (Monash archive convention),321,321,321,zenodo:4656141,CC-BY-4.0
+monash,traffic_weekly,W,8,1,declared (Monash archive convention),500,500,500,zenodo:4656135,CC-BY-4.0
+monash,us_births,D,30,7,declared (Monash archive convention),1,1,1,zenodo:4656049,CC-BY-4.0
+gifteval,bizitobs_l2c+H+short,H,48,24,derived at preparation by gluonts from freq,500,42,42,hf:Salesforce/GiftEval:bizitobs_l2c/H:short,
+gifteval,bizitobs_application+10S+short,10S,60,360,derived at preparation by gluonts from freq,500,30,30,hf:Salesforce/GiftEval:bizitobs_application:short,
+gifteval,bizitobs_service+10S+short,10S,60,360,derived at preparation by gluonts from freq,500,500,500,hf:Salesforce/GiftEval:bizitobs_service:short,
+gifteval,jena_weather+H+short,H,48,24,derived at preparation by gluonts from freq,500,399,399,hf:Salesforce/GiftEval:jena_weather/H:short,
+gifteval,LOOP_SEATTLE+H+short,H,48,24,derived at preparation by gluonts from freq,500,500,500,hf:Salesforce/GiftEval:LOOP_SEATTLE/H:short,
+gifteval,M_DENSE+H+short,H,48,24,derived at preparation by gluonts from freq,500,500,500,hf:Salesforce/GiftEval:M_DENSE/H:short,
+gifteval,SZ_TAXI+H+short,H,48,24,derived at preparation by gluonts from freq,500,312,312,hf:Salesforce/GiftEval:SZ_TAXI/H:short,
+gifteval,solar+H+short,H,48,24,derived at preparation by gluonts from freq,500,500,500,hf:Salesforce/GiftEval:solar/H:short,
+gifteval,ett1+H+short,H,48,24,derived at preparation by gluonts from freq,500,140,140,hf:Salesforce/GiftEval:ett1/H:short,
+gifteval,ett2+H+short,H,48,24,derived at preparation by gluonts from freq,500,140,140,hf:Salesforce/GiftEval:ett2/H:short,
+gifteval,restaurant+D+short,D,30,1,derived at preparation by gluonts from freq,500,500,500,hf:Salesforce/GiftEval:restaurant:short,
+gifteval,hierarchical_sales+D+short,D,30,1,derived at preparation by gluonts from freq,500,500,500,hf:Salesforce/GiftEval:hierarchical_sales/D:short,
