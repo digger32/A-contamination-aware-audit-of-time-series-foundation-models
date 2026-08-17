@@ -1,0 +1,24 @@
+# GIFT-Eval suite. Names below are the STORAGE PATHS of the official HF snapshot
+# (Salesforce/GiftEval): dataset directory + frequency subdirectory + term,
+# verified against the snapshot's directory list (incl. case: LOOP_SEATTLE) and
+# the installed gift_eval.data.Dataset API on 2026-07-21. prepare_data.py
+# resolves 'ds/freq' then falls back to 'ds', and fails loudly listing the
+# actual directories if neither exists.
+# Roster is DISJOINT from our Monash picks by construction (no car_parts /
+# covid_deaths / us_births / hospital duplicates), so the two suites stay disjoint.
+suite: gifteval
+hf_repo: Salesforce/GiftEval
+datasets:
+  - "bizitobs_l2c/H/short"
+  - "bizitobs_application/10S/short"
+  - "bizitobs_service/10S/short"
+  - "jena_weather/H/short"
+  - "LOOP_SEATTLE/H/short"
+  - "M_DENSE/H/short"
+  - "SZ_TAXI/H/short"
+  - "solar/H/short"
+  - "ett1/H/short"
+  - "ett2/H/short"
+  - "restaurant/D/short"
+  - "hierarchical_sales/D/short"
+max_series_per_config: 500

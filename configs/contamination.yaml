@@ -1,0 +1,51 @@
+# Pretraining-corpus contamination matrix: status per (model, dataset).
+# status: clean | contaminated | unknown. EVERY entry is PROVISIONAL until
+# human-verified against the cited source (same rule as level-2 corpus codes:
+# nothing unverified reaches a figure — the verified copy lives in
+# configs/contamination_verified.yaml, produced by you after reading the sources;
+# aggregation refuses to emit the clean/contaminated split from THIS file).
+# Sources to verify against:
+#   chronos:  Ansari et al. 2024 (Chronos), Table in App. — training corpus lists
+#             many Monash datasets; Benchmark II (zero-shot) lists the 27 held out.
+#   moirai:   Woo et al. 2024 (Moirai) — LOTSA corpus contents (includes Monash subsets).
+#   lag_llama: Rasul et al. 2024 — pretraining corpus drawn largely from Monash.
+#   timesfm:  Das et al. 2024 — Google corpus (Wiki/Trends/M4 etc.).
+#   gifteval: cross-check with the GIFT-Eval leaderboard's data-leakage flags.
+# default for unlisted pairs: unknown.
+provisional: true
+models:
+  chronos_bolt_small: &chronos
+    m3_monthly: contaminated        # M3 in Chronos training corpus — VERIFY
+    m3_quarterly: contaminated      # VERIFY
+    m4_hourly: contaminated         # VERIFY
+    m4_weekly: contaminated         # VERIFY
+    tourism_monthly: contaminated   # VERIFY
+    tourism_quarterly: contaminated # VERIFY
+    nn5_daily: unknown
+    nn5_weekly: unknown
+    hospital: unknown
+    fred_md: unknown
+    car_parts: unknown
+    covid_deaths: unknown
+    electricity_weekly: contaminated # VERIFY
+    traffic_weekly: contaminated     # VERIFY
+    us_births: unknown
+  chronos_bolt_base: *chronos
+  moirai_base:
+    m3_monthly: contaminated        # LOTSA — VERIFY per-dataset
+    m3_quarterly: contaminated
+    m4_hourly: contaminated
+    m4_weekly: contaminated
+    tourism_monthly: unknown
+    tourism_quarterly: unknown
+    electricity_weekly: contaminated
+    traffic_weekly: contaminated
+  lag_llama:
+    m3_monthly: unknown             # Lag-Llama holds out some Monash sets — VERIFY which
+    m4_hourly: unknown
+    electricity_weekly: contaminated
+    traffic_weekly: contaminated
+  timesfm_2:
+    m4_hourly: contaminated         # M4 in TimesFM corpus — VERIFY
+    m4_weekly: contaminated
+# GIFT-Eval configs: start from the leaderboard leakage flags at verification time.

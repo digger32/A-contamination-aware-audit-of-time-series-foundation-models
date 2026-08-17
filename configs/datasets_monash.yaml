@@ -1,0 +1,24 @@
+# Monash suite. Zenodo record ids VERIFIED against forecastingdata.org on 2026-07-21.
+# horizon/seasonality follow the Monash archive experiment conventions
+# (rakshitha123/TSForecasting, experiments/fixed_horizons); cross-check at Stage 0
+# via scripts/download_data.py --check, which also verifies each record resolves.
+# max_series: seeded random cap so classical baselines fit 32 cores / 32 GB RAM;
+# identical subset is used by EVERY model (enforced by the eval_hash gate check).
+suite: monash
+license: CC-BY-4.0
+datasets:
+  m3_monthly:        {zenodo: 4656298, file: m3_monthly_dataset.tsf,                        horizon: 18,  seasonality: 12,  max_series: 500}
+  m3_quarterly:      {zenodo: 4656262, file: m3_quarterly_dataset.tsf,                      horizon: 8,   seasonality: 4,   max_series: 500}
+  m4_hourly:         {zenodo: 4656589, file: m4_hourly_dataset.tsf,                         horizon: 48,  seasonality: 24,  max_series: 414}
+  m4_weekly:         {zenodo: 4656522, file: m4_weekly_dataset.tsf,                         horizon: 13,  seasonality: 1,   max_series: 359}
+  tourism_monthly:   {zenodo: 4656096, file: tourism_monthly_dataset.tsf,                   horizon: 24,  seasonality: 12,  max_series: 366}
+  tourism_quarterly: {zenodo: 4656093, file: tourism_quarterly_dataset.tsf,                 horizon: 8,   seasonality: 4,   max_series: 427}
+  nn5_daily:         {zenodo: 4656117, file: nn5_daily_dataset_without_missing_values.tsf,  horizon: 56,  seasonality: 7,   max_series: 111}
+  nn5_weekly:        {zenodo: 4656125, file: nn5_weekly_dataset.tsf,                        horizon: 8,   seasonality: 1,   max_series: 111}
+  hospital:          {zenodo: 4656014, file: hospital_dataset.tsf,                          horizon: 12,  seasonality: 12,  max_series: 500}
+  fred_md:           {zenodo: 4654833, file: fred_md_dataset.tsf,                           horizon: 12,  seasonality: 12,  max_series: 107}
+  car_parts:         {zenodo: 4656021, file: car_parts_dataset_without_missing_values.tsf,  horizon: 12,  seasonality: 12,  max_series: 500}
+  covid_deaths:      {zenodo: 4656009, file: covid_deaths_dataset.tsf,                      horizon: 30,  seasonality: 7,   max_series: 266}
+  electricity_weekly: {zenodo: 4656141, file: electricity_weekly_dataset.tsf,                horizon: 8,   seasonality: 1,   max_series: 321}
+  traffic_weekly:    {zenodo: 4656135, file: traffic_weekly_dataset.tsf,                    horizon: 8,   seasonality: 1,   max_series: 500}
+  us_births:         {zenodo: 4656049, file: us_births_dataset.tsf,                         horizon: 30,  seasonality: 7,   max_series: 1}

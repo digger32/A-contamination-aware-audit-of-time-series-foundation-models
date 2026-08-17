@@ -1,0 +1,26 @@
+# Environment for this benchmark.
+# a dedicated virtual environment; pin the core packages with a constraints file
+# Install the core first and the foundation-model libraries on top; where a
+# library's pins conflict with the core, install it with --no-deps and add its
+# missing runtime dependencies individually (see README).
+# Versions below are the ones this study was run with.
+numpy>=1.26,<3
+pandas>=2.2
+scipy>=1.13
+pyyaml>=6.0
+scikit-posthocs>=0.9
+matplotlib>=3.8
+torch>=2.5
+xgboost>=2.1
+statsforecast>=1.7
+gluonts[torch]>=0.15
+chronos-forecasting>=1.4          # amazon Chronos / Chronos-Bolt
+timesfm>=2.0.2                    # reworked package (Sep 2025+): no [torch] extra,
+                                  # numpy2-compatible; 1.x pins numpy 1.26 — never install it
+uni2ts>=1.2                       # Salesforce Moirai — UNVERIFIED pin
+lag-llama @ git+https://github.com/time-series-foundation-models/lag-llama.git
+salesforce-gift-eval @ git+https://github.com/SalesforceAIResearch/gift-eval.git
+                                  # distribution name is salesforce-gift-eval;
+                                  # the importable module is still gift_eval
+huggingface_hub>=0.24
+scikit-learn>=1.5                 # required by xgboost sklearn API (env-parity fix)

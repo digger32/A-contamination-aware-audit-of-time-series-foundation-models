@@ -1,0 +1,8 @@
+# Pin the core packages so that installing a foundation-model library later
+# cannot silently upgrade or downgrade them. Fill in from `pip freeze` after the
+# first successful install, then export PIP_CONSTRAINT=constraints.txt.
+# numpy==
+# pandas==
+# scipy==
+# scikit-learn==
+# torch==

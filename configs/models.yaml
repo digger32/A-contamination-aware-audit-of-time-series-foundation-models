@@ -1,0 +1,49 @@
+# Model roster. n_seeds=1 for deterministic methods (the seed axis collapses);
+# 3 where run-to-run stochasticity exists (training / sampling).
+# device: foundation and neural models on cuda; classical on cpu (gradient
+# boosting on small samples is markedly slower on GPU than on CPU).
+# context_cap truncates CONTEXT only (never targets); batch_series is the initial
+# cross-series batch — the OOM backoff halves it on torch.OutOfMemoryError down
+# to 1 and records oom_backoffs in the unit JSON (allocator fragmentation, not true memory pressure, caused
+# repeated out-of-memory failures in an earlier study).
+# Tuning budget, logged and reported: classical = statsforecast automatic
+# selection only; xgb_lags = one fixed config (see models_classical.py);
+# patchtst = library defaults + max_epochs; TSFMs = zero-shot, no tuning.
+models:
+  snaive:
+    {kind: classical, n_seeds: 1, device: cpu}
+  autoets:
+    {kind: classical, n_seeds: 1, device: cpu}
+  autoarima:
+    {kind: classical, n_seeds: 1, device: cpu}
+  xgb_lags:
+    # n_seeds=1: the global hist XGBoost is effectively deterministic here — the
+    # pilot produced bit-identical MASE across seeds 0/1, so extra seeds are
+    # pseudo-replication. patchtst keeps 3 (it carries real seed variance).
+    {kind: ml, n_seeds: 1, device: cpu, n_jobs: 1}
+  patchtst:
+    {kind: neural, n_seeds: 3, device: cuda, max_epochs: 20, batch: 64}
+  chronos_bolt_small:
+    {kind: tsfm, n_seeds: 1, device: cuda, hf: amazon/chronos-bolt-small,
+     context_cap: 2048, batch_series: 256}
+  chronos_bolt_base:
+    {kind: tsfm, n_seeds: 1, device: cuda, hf: amazon/chronos-bolt-base,
+     context_cap: 2048, batch_series: 128}
+  timesfm_2:
+    {kind: tsfm, n_seeds: 1, device: cuda, hf: google/timesfm-2.5-200m-pytorch,
+     context_cap: 2048, batch_series: 128}
+  moirai_base:
+    {kind: tsfm, n_seeds: 1, device: cuda, hf: Salesforce/moirai-1.1-R-base,
+     context_cap: 4000, batch_series: 64}
+    # uni2ts pins older numpy/torch than the rest of the stack. If Moirai fails
+    # at runtime on a current stack, do NOT downgrade the shared environment:
+    # build a separate virtual environment satisfying its pins and add
+    #   python: /path/to/that/env/bin/python
+    # inside the braces above. Any model accepts this optional interpreter
+    # override; the runner launches only that model's units through it and
+    # records the interpreter in each unit's output.
+  lag_llama:
+    # n_seeds=1: only sampling noise varies (median over num_samples is stable);
+    # additional seeds tripled a long GPU tail for no statistical gain.
+    {kind: tsfm, n_seeds: 1, device: cuda, hf: time-series-foundation-models/Lag-Llama,
+     context_cap: 1024, batch_series: 64, num_samples: 100, n_seeds_note: 'sampling-only'}

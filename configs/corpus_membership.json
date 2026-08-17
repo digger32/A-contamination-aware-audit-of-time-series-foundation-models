@@ -1,0 +1,136 @@
+{
+  "GiftEvalPretrain": {
+    "repo": "Salesforce/GiftEvalPretrain",
+    "provenance": "timesfm-2.5 model card, Data section",
+    "n_members": 152,
+    "datasets": {
+      "m3_monthly": {
+        "status": "PRESENT",
+        "evidence": "Salesforce/GiftEvalPretrain :: monash_m3_monthly"
+      },
+      "m3_quarterly": {
+        "status": "PRESENT",
+        "evidence": "Salesforce/GiftEvalPretrain :: monash_m3_quarterly"
+      },
+      "m4_hourly": {
+        "status": "ABSENT",
+        "evidence": "no member of Salesforce/GiftEvalPretrain matches ['m4_hourly']"
+      },
+      "m4_weekly": {
+        "status": "ABSENT",
+        "evidence": "no member of Salesforce/GiftEvalPretrain matches ['m4_weekly']"
+      },
+      "tourism_monthly": {
+        "status": "PRESENT",
+        "evidence": "Salesforce/GiftEvalPretrain :: tourism_monthly"
+      },
+      "tourism_quarterly": {
+        "status": "PRESENT",
+        "evidence": "Salesforce/GiftEvalPretrain :: tourism_quarterly"
+      },
+      "nn5_daily": {
+        "status": "CANDIDATE",
+        "evidence": "Salesforce/GiftEvalPretrain :: ['nn5_daily_with_missing'] \u2014 confirm by hand"
+      },
+      "nn5_weekly": {
+        "status": "PRESENT",
+        "evidence": "Salesforce/GiftEvalPretrain :: nn5_weekly"
+      },
+      "hospital": {
+        "status": "ABSENT",
+        "evidence": "no member of Salesforce/GiftEvalPretrain matches ['hospital']"
+      },
+      "fred_md": {
+        "status": "PRESENT",
+        "evidence": "Salesforce/GiftEvalPretrain :: fred_md"
+      },
+      "car_parts": {
+        "status": "ABSENT",
+        "evidence": "no member of Salesforce/GiftEvalPretrain matches ['car_parts', 'carparts']"
+      },
+      "covid_deaths": {
+        "status": "ABSENT",
+        "evidence": "no member of Salesforce/GiftEvalPretrain matches ['covid_deaths']"
+      },
+      "electricity_weekly": {
+        "status": "ABSENT",
+        "evidence": "no member of Salesforce/GiftEvalPretrain matches ['electricity_weekly']"
+      },
+      "traffic_weekly": {
+        "status": "PRESENT",
+        "evidence": "Salesforce/GiftEvalPretrain :: traffic_weekly"
+      },
+      "us_births": {
+        "status": "ABSENT",
+        "evidence": "no member of Salesforce/GiftEvalPretrain matches ['us_births']"
+      }
+    }
+  },
+  "lotsa_data": {
+    "repo": "Salesforce/lotsa_data",
+    "provenance": "LOTSA corpus behind Moirai (Woo et al. 2024)",
+    "n_members": 170,
+    "datasets": {
+      "m3_monthly": {
+        "status": "PRESENT",
+        "evidence": "Salesforce/lotsa_data :: monash_m3_monthly"
+      },
+      "m3_quarterly": {
+        "status": "PRESENT",
+        "evidence": "Salesforce/lotsa_data :: monash_m3_quarterly"
+      },
+      "m4_hourly": {
+        "status": "PRESENT",
+        "evidence": "Salesforce/lotsa_data :: m4_hourly"
+      },
+      "m4_weekly": {
+        "status": "PRESENT",
+        "evidence": "Salesforce/lotsa_data :: m4_weekly"
+      },
+      "tourism_monthly": {
+        "status": "PRESENT",
+        "evidence": "Salesforce/lotsa_data :: tourism_monthly"
+      },
+      "tourism_quarterly": {
+        "status": "PRESENT",
+        "evidence": "Salesforce/lotsa_data :: tourism_quarterly"
+      },
+      "nn5_daily": {
+        "status": "CANDIDATE",
+        "evidence": "Salesforce/lotsa_data :: ['nn5_daily_with_missing'] \u2014 confirm by hand"
+      },
+      "nn5_weekly": {
+        "status": "PRESENT",
+        "evidence": "Salesforce/lotsa_data :: nn5_weekly"
+      },
+      "hospital": {
+        "status": "PRESENT",
+        "evidence": "Salesforce/lotsa_data :: hospital"
+      },
+      "fred_md": {
+        "status": "PRESENT",
+        "evidence": "Salesforce/lotsa_data :: fred_md"
+      },
+      "car_parts": {
+        "status": "CANDIDATE",
+        "evidence": "Salesforce/lotsa_data :: ['car_parts_with_missing'] \u2014 confirm by hand"
+      },
+      "covid_deaths": {
+        "status": "PRESENT",
+        "evidence": "Salesforce/lotsa_data :: covid_deaths"
+      },
+      "electricity_weekly": {
+        "status": "ABSENT",
+        "evidence": "no member of Salesforce/lotsa_data matches ['electricity_weekly']"
+      },
+      "traffic_weekly": {
+        "status": "PRESENT",
+        "evidence": "Salesforce/lotsa_data :: traffic_weekly"
+      },
+      "us_births": {
+        "status": "PRESENT",
+        "evidence": "Salesforce/lotsa_data :: us_births"
+      }
+    }
+  }
+}

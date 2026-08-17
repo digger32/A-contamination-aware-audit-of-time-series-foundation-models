@@ -1,0 +1,32 @@
+# Gate configuration. Written BEFORE the final pass: declaring the claims and
+# their independent datasets after seeing results would defeat the purpose.
+# Dataset tokens must match the runner's names exactly (gifteval names use '+').
+
+stats_artifacts:
+  - stats/omnibus.json
+  - stats/posthoc.json
+  - stats/wins.json
+  - stats/contamination_split.json
+  - stats/coverage.json
+  - stats/head_to_head_classical.json
+
+# Every comparative claim the paper will make, with the datasets that count as
+# independent for it. The two-suite design IS the external validation: any claim
+# established on Monash must hold on GIFT-Eval configs the TSFMs did not select.
+comparative_claims:
+  - id: "tsfms_rarely_beat_snaive_outside_pretraining_distribution"
+    independent_datasets: ["bizitobs_l2c+H+short", "jena_weather+H+short",
+                           "LOOP_SEATTLE+H+short", "restaurant+D+short"]
+  - id: "classical_baselines_competitive_with_tsfm_zero_shot"
+    independent_datasets: ["hierarchical_sales+D+short", "solar+H+short",
+                           "ett1+H+short"]
+  - id: "contamination_inflates_reported_tsfm_gains"
+    independent_datasets: ["nn5_daily", "hospital", "fred_md", "covid_deaths"]
+    # clean-subset Monash datasets serve as the independent side of the
+    # contaminated-vs-clean contrast; final list synced with the VERIFIED matrix
+  - id: "compute_cost_per_accuracy_favours_classical"
+    independent_datasets: ["m4_hourly", "electricity_weekly", "traffic_weekly"]
+
+# (dataset, model) cells that genuinely cannot be produced, each with a written
+# justification. Empty here by design: every cell in this study was computable.
+allowed_missing_cells: {}
